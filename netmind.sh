@@ -29,6 +29,15 @@ for data in $(<netmind.urls); do
 		lynx -dump -useragent="$AGENT" "$URL" >> "$TMPFILE" 2> /dev/null
 
 		if [ "$?" = "0" -a -e "$SAVED" ]; then
+			# Filtrera sidor
+			if [ -e "$TAG.sed" ]; then
+				TMPFILE2=$(/bin/tempfile --prefix=netmind)
+				sed -f "$TAG.sed" "$TMPFILE" >> "$TMPFILE2"
+				rm -f "$TMPFILE"
+				mv "$TMPFILE2" "$TMPFILE"
+				unset TMPFILE2
+			fi
+
 			# Jämför med undansparad sida
 			if diff -qwbB "$SAVED" "$TMPFILE" > /dev/null; then
 				# Lika, kasta bort temporärfil
@@ -47,8 +56,8 @@ for data in $(<netmind.urls); do
 					echo "Sidan i sin helhet:"
 					cat "$TMPFILE"
 				) | mailx -s "Ändringar i $URL" peter@softwolves.pp.se
-				rm "$SAVED.2"
-				mv "$SAVED.1" "$SAVED.2"
+				test -e "$SAVED.2" && rm "$SAVED.2"
+				test -e "$SAVED.1" && mv "$SAVED.1" "$SAVED.2"
 				mv "$SAVED" "$SAVED.1"
 				mv "$TMPFILE" "$SAVED"
 			fi
@@ -57,6 +66,14 @@ for data in $(<netmind.urls); do
 			if [ $(/home/peter/src/filesize "$TMPFILE") = "0" ]; then
 				rm "$TMPFILE"
 			else
+				# Filtrera sidor
+				if [ -e "$TAG.sed" ]; then
+					TMPFILE2=$(/bin/tempfile --prefix=netmind)
+					sed -f "$TAG.sed" "$TMPFILE" >> "$TMPFILE2"
+					rm -f "$TMPFILE"
+					mv "$TMPFILE2" "$TMPFILE"
+					unset TMPFILE2
+				fi
 				mv "$TMPFILE" "$SAVED"
 			fi
 		fi
