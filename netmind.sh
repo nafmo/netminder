@@ -69,7 +69,7 @@ for data in $(<netmind.urls); do
 					echo "---------------------------------------------------------------------------"
 					cat "$TMPFILE"
 					echo "---------------------------------------------------------------------------"
-				) | /usr/lib/sendmail -oem -t -oi "$EMAIL"
+				) | /usr/lib/sendmail -oem -t -oi
 				test -e "$SAVED.2" && rm "$SAVED.2"
 				test -e "$SAVED.1" && mv "$SAVED.1" "$SAVED.2"
 				mv "$SAVED" "$SAVED.1"
