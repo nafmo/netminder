@@ -54,6 +54,8 @@ for data in $(<netmind.urls); do
 					echo "To: Peter Karlsson <$EMAIL>"
 					echo "Subject: Ändringar i $URL"
 					echo "X-Netmind: clear"
+					echo "MIME-Version: 1.0"
+					echo "Content-Type: text/plain;charset=iso-8859-1"
 					echo
 					echo "Ändringar har detekterats i $URL"
 					echo "Tidigare fil daterad $OLD"
