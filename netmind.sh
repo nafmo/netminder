@@ -50,6 +50,11 @@ for data in $(<netmind.urls); do
 				OLD=$(/home/peter/bin/filedate "$SAVED")
 
 				(
+					echo "From: MyNetMind <$EMAIL>'
+					echo "To: Peter Karlsson <$EMAIL>"
+					echo "Subject: Ändringar i $URL"
+					echo "X-Netmind: clear"
+					echo
 					echo "Ändringar har detekterats i $URL"
 					echo "Tidigare fil daterad $OLD"
 					echo
@@ -62,7 +67,7 @@ for data in $(<netmind.urls); do
 					echo "---------------------------------------------------------------------------"
 					cat "$TMPFILE"
 					echo "---------------------------------------------------------------------------"
-				) | mailx -s "Ändringar i $URL" -a "X-Netmind: clear" $EMAIL
+				) | /usr/lib/sendmail -oem -t -oi "$EMAIL"
 				test -e "$SAVED.2" && rm "$SAVED.2"
 				test -e "$SAVED.1" && mv "$SAVED.1" "$SAVED.2"
 				mv "$SAVED" "$SAVED.1"
