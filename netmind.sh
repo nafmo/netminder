@@ -51,10 +51,14 @@ for data in $(<netmind.urls); do
 					echo "Tidigare fil daterad $OLD"
 					echo
 					echo "Dessa ändringar finns:"
+					echo "---------------------------------------------------------------------------"
 					diff -u "$SAVED" --label "Version per den $OLD" "$TMPFILE" --label "Aktuell $URL"
+					echo "---------------------------------------------------------------------------"
 					echo
 					echo "Sidan i sin helhet:"
+					echo "---------------------------------------------------------------------------"
 					cat "$TMPFILE"
+					echo "---------------------------------------------------------------------------"
 				) | mailx -s "Ändringar i $URL" peter@softwolves.pp.se
 				test -e "$SAVED.2" && rm "$SAVED.2"
 				test -e "$SAVED.1" && mv "$SAVED.1" "$SAVED.2"
