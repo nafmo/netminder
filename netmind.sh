@@ -11,6 +11,9 @@ AGENT="MyPersonalNetMind/1.0 (Using Lynx)"
 cd /home/peter/bin/netmind
 test -e netmind.urls || exit 1
 
+# Hämta inställningar
+read EMAIL < netmind.config
+
 # Gå igenom listan över URLer
 for data in $(<netmind.urls); do
 	# Dela på värdena
@@ -44,7 +47,7 @@ for data in $(<netmind.urls); do
 				rm -f "$TMPFILE"
 			else
 				# E-posta jämförelsen
-				OLD=$(/home/peter/src/filedate "$SAVED")
+				OLD=$(/home/peter/bin/filedate "$SAVED")
 
 				(
 					echo "Ändringar har detekterats i $URL"
@@ -59,7 +62,7 @@ for data in $(<netmind.urls); do
 					echo "---------------------------------------------------------------------------"
 					cat "$TMPFILE"
 					echo "---------------------------------------------------------------------------"
-				) | mailx -s "Ändringar i $URL" -a "X-Netmind: clear" peter@softwolves.pp.se
+				) | mailx -s "Ändringar i $URL" -a "X-Netmind: clear" $EMAIL
 				test -e "$SAVED.2" && rm "$SAVED.2"
 				test -e "$SAVED.1" && mv "$SAVED.1" "$SAVED.2"
 				mv "$SAVED" "$SAVED.1"
@@ -67,7 +70,7 @@ for data in $(<netmind.urls); do
 			fi
 		else
 			# Första gången, spara undan filen
-			if [ $(/home/peter/src/filesize "$TMPFILE") = "0" ]; then
+			if [ $(/home/peter/bin/filesize "$TMPFILE") = "0" ]; then
 				rm "$TMPFILE"
 			else
 				# Filtrera sidor
