@@ -59,7 +59,7 @@ for data in $(<netmind.urls); do
 					echo "---------------------------------------------------------------------------"
 					cat "$TMPFILE"
 					echo "---------------------------------------------------------------------------"
-				) | mailx -s "Ändringar i $URL" peter@softwolves.pp.se
+				) | mailx -s "Ändringar i $URL" -a "X-Netmind: clear" peter@softwolves.pp.se
 				test -e "$SAVED.2" && rm "$SAVED.2"
 				test -e "$SAVED.1" && mv "$SAVED.1" "$SAVED.2"
 				mv "$SAVED" "$SAVED.1"
