@@ -56,6 +56,7 @@ for data in $(<netmind.urls); do
 					echo "X-Netmind: clear"
 					echo "MIME-Version: 1.0"
 					echo "Content-Type: text/plain;charset=iso-8859-1"
+					echo "Content-Transfer-Encoding: 8bit"
 					echo
 					echo "Ändringar har detekterats i $URL"
 					echo "Tidigare fil daterad $OLD"
