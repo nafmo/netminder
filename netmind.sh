@@ -54,7 +54,11 @@ for data in $(<netmind.urls); do
 			fi
 		else
 			# Första gången, spara undan filen
-			mv "$TMPFILE" "$SAVED"
+			if [ $(/home/peter/src/filesize "$TMPFILE") = "0" ]; then
+				rm "$TMPFILE"
+			else
+				mv "$TMPFILE" "$SAVED"
+			fi
 		fi
 		;;
 	*)
