@@ -26,7 +26,7 @@ for data in $(<netmind.urls); do
 		test -e "$TMPFILE" || exit 1
 
 		# Hämta aktuell sida
-		lynx -dump -useragent="$AGENT" "$URL" >> "$TMPFILE" 2> /dev/null
+		lynx -dump -nolist -useragent="$AGENT" "$URL" >> "$TMPFILE" 2> /dev/null
 
 		if [ "$?" = "0" -a -e "$SAVED" ]; then
 			# Filtrera sidor
