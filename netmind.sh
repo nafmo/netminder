@@ -1,6 +1,6 @@
 #!/bin/bash
 # Titta på om webbsidor har uppdaterat sig
-# © 2001 Peter Karlsson <peter@softwolves.pp.se>
+# © 2001-2002 Peter Karlsson <peter@softwolves.pp.se>
 
 # Inställningar
 export LC_ALL="sv_SE.ISO8859-1"
