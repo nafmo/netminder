@@ -50,7 +50,7 @@ for data in $(<netmind.urls); do
 				OLD=$(/home/peter/bin/filedate "$SAVED")
 
 				(
-					echo "From: MyNetMind <$EMAIL>'
+					echo "From: MyNetMind <$EMAIL>"
 					echo "To: Peter Karlsson <$EMAIL>"
 					echo "Subject: Ändringar i $URL"
 					echo "X-Netmind: clear"
