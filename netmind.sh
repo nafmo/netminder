@@ -14,7 +14,7 @@ test -e netmind.urls || exit 1
 # Gå igenom listan över URLer
 for data in $(<netmind.urls); do
 	# Dela på värdena
-	TAG="${data%=*}"
+	TAG="${data%%=*}"
 	URL="${data#*=}"
 
 	case "$URL" in
