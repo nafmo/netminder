@@ -52,7 +52,7 @@ for data in $(<netmind.urls); do
 				(
 					echo "From: MyNetMind <$EMAIL>"
 					echo "To: Peter Karlsson <$EMAIL>"
-					echo "Subject: Ändringar i $URL"
+					echo "Subject: =?ISO-8859-1?Q?=C4ndringar?= i $URL"
 					echo "X-Netmind: clear"
 					echo "MIME-Version: 1.0"
 					echo "Content-Type: text/plain;charset=iso-8859-1"
