@@ -1,6 +1,6 @@
 #!/bin/bash
 # Titta på om webbsidor har uppdaterat sig
-# © 2001-2005 Peter Karlsson <peter@softwolves.pp.se>
+# © 2001-2008 Peter Krefting <peter@softwolves.pp.se>
 
 # Inställningar
 export LC_ALL="sv_SE.ISO8859-1"
@@ -51,7 +51,7 @@ for data in $(<netmind.urls); do
 
 				(
 					echo "From: MyNetMind <$EMAIL>"
-					echo "To: Peter Karlsson <$EMAIL>"
+					echo "To: Peter Krefting <$EMAIL>"
 					echo "Subject: =?ISO-8859-1?Q?=C4ndringar?= i $URL"
 					echo "X-Netmind: clear"
 					echo "MIME-Version: 1.0"
