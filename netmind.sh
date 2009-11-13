@@ -47,7 +47,7 @@ for data in $(<netmind.urls); do
 				rm -f "$TMPFILE"
 			else
 				# E-posta jämförelsen
-				OLD=$(/home/peter/bin/filedate "$SAVED")
+				OLD=$(/bin/date -r "$SAVED" +"%Y-%m-%d")
 
 				(
 					echo "From: MyNetMind <$EMAIL>"
@@ -78,7 +78,7 @@ for data in $(<netmind.urls); do
 			fi
 		else
 			# Första gången, spara undan filen
-			if [ $(/home/peter/bin/filesize "$TMPFILE") = "0" ]; then
+			if [ ! -s "$TMPFILE" ]; then
 				rm "$TMPFILE"
 			else
 				# Filtrera sidor
