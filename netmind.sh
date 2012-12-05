@@ -1,7 +1,7 @@
 #!/bin/bash
 # Check if web pages have been updated
 #
-# Copyright © 2001-2009 Peter Krefting <peter@softwolves.pp.se>
+# Copyright © 2001-2012 Peter Krefting <peter@softwolves.pp.se>
 #
 # ------------------------------------------------------------------------
 #
@@ -24,7 +24,7 @@
 export LC_ALL="sv_SE.ISO8859-1"
 export TERM=vt100
 AGENT="MyPersonalNetMind/1.0 (Using Lynx)"
-DIRECTORY="/home/peter/bin/netmind"
+DIRECTORY="/EDIT/ME"
 
 # Check integrity
 cd "$DIRECTORY"
@@ -88,22 +88,28 @@ for data in $(<netmind.urls); do
 
 				(
 					echo "From: MyNetMind <$EMAIL>"
-					echo "To: Peter Krefting <$EMAIL>"
-					echo "Subject: =?ISO-8859-1?Q?=C4ndringar?= i $URL"
+					echo "To: $EMAIL"
+					# echo "Subject: =?ISO-8859-1?Q?=C4ndringar?= i $URL"
+					echo "Subject: Changes in $URL"
 					echo "X-Netmind: clear"
 					echo "MIME-Version: 1.0"
 					echo "Content-Type: text/plain;charset=iso-8859-1"
 					echo "Content-Transfer-Encoding: 8bit"
 					echo
-					echo "Ändringar har detekterats i $URL"
-					echo "Tidigare fil daterad $OLD"
+					# echo "Ändringar har detekterats i $URL"
+					echo "Changes were found in $URL"
+					# echo "Tidigare fil daterad $OLD"
+					echo "Previous file dated $OLD"
 					echo
-					echo "Dessa ändringar finns:"
+					# echo "Dessa ändringar finns:"
+					echo "The changes were found"
 					echo "---------------------------------------------------------------------------"
-					diff -u "$SAVED" --label "Version per den $OLD" "$TMPFILE" --label "Aktuell $URL"
+					# diff -u "$SAVED" --label "Version per den $OLD" "$TMPFILE" --label "Aktuell $URL"
+					diff -u "$SAVED" --label "Version as of $OLD" "$TMPFILE" --label "Current $URL"
 					echo "---------------------------------------------------------------------------"
 					echo
-					echo "Sidan i sin helhet:"
+					# echo "Sidan i sin helhet:"
+					echo "The complete page:"
 					echo "---------------------------------------------------------------------------"
 					cat "$TMPFILE"
 					echo "---------------------------------------------------------------------------"
@@ -131,7 +137,8 @@ for data in $(<netmind.urls); do
 		fi
 		;;
 	*)
-		echo "Ogiltig URL i netmaind.urls: $data"
+		# echo "Ogiltig URL i netmind.urls: $data"
+		echo "Invalid URL in netmind.urls: $data"
 		;;
 	esac
 done
