@@ -72,7 +72,7 @@ for data in $(<netmind.urls); do
 			# Filter pages
 			if [ -e "$TAG.sed" ]; then
 				TMPFILE2=$(/bin/tempfile --prefix=netmind)
-				sed -f "$TAG.sed" "$TMPFILE" >> "$TMPFILE2"
+				sed -r -f "$TAG.sed" "$TMPFILE" >> "$TMPFILE2"
 				rm -f "$TMPFILE"
 				mv "$TMPFILE2" "$TMPFILE"
 				unset TMPFILE2
