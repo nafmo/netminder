@@ -1,7 +1,7 @@
 #!/bin/bash
 # Check if web pages have been updated
 #
-# Copyright © 2001-2012 Peter Krefting <peter@softwolves.pp.se>
+# Copyright © 2001-2019 Peter Krefting <peter@softwolves.pp.se>
 #
 # ------------------------------------------------------------------------
 #
@@ -31,6 +31,9 @@ cd "$DIRECTORY"
 if [ ! -e netmind.urls -o ! -e netmind.config ]; then
   echo "Cannot find netmind.urls or netmind.config in $DIRECTORY"
   echo
+  echo "Edit the Settings section of $0. Set DIRECTORY to point at the"
+  echo "directory in which the you place the netmind.urls file."
+  echo
   echo "Populate netmind.urls with the list of web pages to monitor on the form"
   echo "   key=url"
   echo
@@ -44,7 +47,7 @@ if [ ! -e netmind.urls -o ! -e netmind.config ]; then
   echo "Now call netmind.sh once to set up the initial files, and then set up"
   echo "(for instance) a daily run through cron."
   echo
-  echo "Requires: lynx, sed, GNU date, GNU diff, sendmail (or compatible)"
+  echo "Requires: lynx, GNU sed, GNU date, GNU diff, sendmail (or compatible)"
   exit 1
 fi
 
