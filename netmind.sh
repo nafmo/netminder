@@ -65,7 +65,7 @@ for data in $(<netmind.urls); do
 
 		# File name
 		SAVED="$TAG.current"
-		TMPFILE=$(/bin/tempfile --prefix=netmind)
+		TMPFILE=$(/bin/mktemp --tmpdir netmind.XXXXXXXXXX)
 		test -e "$TMPFILE" || exit 1
 
 		# Get the current page
@@ -74,7 +74,7 @@ for data in $(<netmind.urls); do
 		if [ "$?" = "0" -a -e "$SAVED" ]; then
 			# Filter pages
 			if [ -e "$TAG.sed" ]; then
-				TMPFILE2=$(/bin/tempfile --prefix=netmind)
+				TMPFILE2=$(/bin/mktemp --tmpdir netmind.XXXXXXXXXX)
 				sed -r -f "$TAG.sed" "$TMPFILE" >> "$TMPFILE2"
 				rm -f "$TMPFILE"
 				mv "$TMPFILE2" "$TMPFILE"
@@ -129,7 +129,7 @@ for data in $(<netmind.urls); do
 			else
 				# Filter pages
 				if [ -e "$TAG.sed" ]; then
-					TMPFILE2=$(/bin/tempfile --prefix=netmind)
+					TMPFILE2=$(/bin/mktemp --tmpdir netmind.XXXXXXXXXX)
 					sed -f "$TAG.sed" "$TMPFILE" >> "$TMPFILE2"
 					rm -f "$TMPFILE"
 					mv "$TMPFILE2" "$TMPFILE"
