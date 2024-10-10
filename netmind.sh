@@ -1,7 +1,7 @@
 #!/bin/bash
 # Check if web pages have been updated
 #
-# Copyright © 2001-2019 Peter Krefting <peter@softwolves.pp.se>
+# Copyright Â© 2001-2024 Peter Krefting <peter@softwolves.pp.se>
 #
 # ------------------------------------------------------------------------
 #
@@ -21,7 +21,7 @@
 # ------------------------------------------------------------------------
 
 # Settings
-export LC_ALL="sv_SE.ISO8859-1"
+export LC_ALL="en_GB.utf8"
 export TERM=vt100
 AGENT="MyPersonalNetMind/1.0 (Using Lynx)"
 DIRECTORY="/EDIT/ME"
@@ -96,15 +96,15 @@ for data in $(<netmind.urls); do
 					echo "Subject: Changes in $URL"
 					echo "X-Netmind: clear"
 					echo "MIME-Version: 1.0"
-					echo "Content-Type: text/plain;charset=iso-8859-1"
+					echo "Content-Type: text/plain;charset=utf-8"
 					echo "Content-Transfer-Encoding: 8bit"
 					echo
-					# echo "Ändringar har detekterats i $URL"
+					# echo "Ã„ndringar har detekterats i $URL"
 					echo "Changes were found in $URL"
 					# echo "Tidigare fil daterad $OLD"
 					echo "Previous file dated $OLD"
 					echo
-					# echo "Dessa ändringar finns:"
+					# echo "Dessa Ã¤ndringar finns:"
 					echo "The changes were found"
 					echo "---------------------------------------------------------------------------"
 					# diff -u "$SAVED" --label "Version per den $OLD" "$TMPFILE" --label "Aktuell $URL"
