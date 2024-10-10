@@ -25,6 +25,7 @@ export LC_ALL="en_GB.utf8"
 export TERM=vt100
 AGENT="MyPersonalNetMind/1.0 (Using Lynx)"
 DIRECTORY="/EDIT/ME"
+SENDMAIL="/sbin/sendmail"
 
 # Check integrity
 cd "$DIRECTORY"
@@ -116,7 +117,7 @@ for data in $(<netmind.urls); do
 					echo "---------------------------------------------------------------------------"
 					cat "$TMPFILE"
 					echo "---------------------------------------------------------------------------"
-				) | /usr/lib/sendmail -oem -t -oi
+				) | $SENDMAIL -oem -t -oi
 				test -e "$SAVED.2" && rm "$SAVED.2"
 				test -e "$SAVED.1" && mv "$SAVED.1" "$SAVED.2"
 				mv "$SAVED" "$SAVED.1"
